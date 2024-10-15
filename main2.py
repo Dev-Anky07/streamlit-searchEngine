@@ -43,10 +43,11 @@ def ensure_index_exists():
     )
     st.success("Index 'idx:all' created successfully!")
     index_info = r.ft('idx:all').info()
-    st.json(index_info)
+    #st.json(index_info)
 
 ensure_index_exists()
 
+# Streamlit UI
 
 st.set_page_config(
     page_title="Search Index",
@@ -55,7 +56,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Streamlit UI
 st.title("Creative Destruction XYZ Search")
 
 # Search bar
