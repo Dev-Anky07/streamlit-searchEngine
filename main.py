@@ -12,6 +12,14 @@ REDIS_PASSWORD = os.environ['REDIS_PASSWORD']
 # Initialize Redis connection
 r = redis.Redis(host=REDIS_END, port=REDIS_PORT, password=REDIS_PASSWORD, decode_responses=True)
 
+st.set_page_config(
+    page_title="Search Index",
+    page_icon="🤔",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+
 # Check if index exists and create it if it doesn't
 def ensure_index_exists():
     try:
@@ -46,14 +54,6 @@ def ensure_index_exists():
     st.json(index_info)
 
 ensure_index_exists()
-
-
-st.set_page_config(
-    page_title="Search Index",
-    page_icon="🤔",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 # Streamlit UI
 st.title("Creative Destruction XYZ Search")
