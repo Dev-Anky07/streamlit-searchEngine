@@ -48,6 +48,14 @@ def ensure_index_exists():
 ensure_index_exists()
 
 # Streamlit UI
+
+st.set_page_config(
+    page_title="Search Index",
+    page_icon="🤔",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 st.title("Creative Destruction XYZ Search")
 
 # Search bar
