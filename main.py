@@ -43,7 +43,7 @@ def ensure_index_exists():
     )
     st.success("Index 'idx:all' created successfully!")
     index_info = r.ft('idx:all').info()
-    st.json(index_info)
+    #st.json(index_info)
 
 ensure_index_exists()
 
