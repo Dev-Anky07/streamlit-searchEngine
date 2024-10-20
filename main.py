@@ -53,7 +53,7 @@ def ensure_index_exists():
     index_documents()
 
     index_info = r.ft('idx:all').info()
-    st.json(index_info)
+    #st.json(index_info)
 
 def index_documents():
     # Get all keys with the specified prefixes
