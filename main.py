@@ -49,7 +49,7 @@ def ensure_index_exists():
         )
         st.success("Index 'idx:all' created successfully!")
 
-    # Index existing documents
+    # Index/update existing documents
     index_documents()
 
     index_info = r.ft('idx:all').info()
@@ -59,18 +59,16 @@ def index_documents():
     # Get all keys with the specified prefixes
     keys = r.keys('Tweet :*') + r.keys('Spaces :*') + r.keys('discord_message :*')
     
+    indexed_count = 0
     for key in keys:
-        # Check if the document is already in the index
-        if not r.exists(key):
-            continue
-        
         # Get the document data
         doc = r.hgetall(key)
         
-        # Add the document to the index
-        r.ft('idx:all').add_document(key, **doc)
+        # Update the document in Redis (this will also update the index)
+        r.hset(key, mapping=doc)
+        indexed_count += 1
 
-    st.success(f"Indexed {len(keys)} documents")
+    st.success(f"Indexed/Updated {indexed_count} documents")
 
 ensure_index_exists()
 
